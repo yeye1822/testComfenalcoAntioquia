@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Consumir Servicio SprintBoot</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+	<link rel="stylesheet" href="fontAwesome/css/font-awesome.min.css">
+
+
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+	<script type="text/javascript" src="js/consumeServiceCliente.js"></script>
+</head>
+<body onload="findAll();">
+
+<div class="container">
+	<h1 class="mt-5 mb-5">Lista de Clientes</h1>
+
+	<div class="text-right">
+		<button type="button" class="btn btn-outline-primary mb-4 text-right" data-toggle="modal" data-target="#staticBackdrop">Agregar Cliente</button>
+		<button type="button" class="btn btn-outline-primary mb-4 text-right" onclick="enviarPremiacion();">Ir a Premiación</button>
+	</div>
+	
+	<table class="table">
+	  <thead>
+	    <tr>
+		  <th scope="col">#</th>
+		  <th scope="col">Tipo Documento</th>
+		  <th scope="col">Documento</th>
+	      <th scope="col">Nombre</th>
+	      <th scope="col">Apellido</th>
+	      <th scope="col">Email</th>
+		  <th scope="col">Fecha Nacimiento</th>
+		  <th scope="col">Fecha Creación</th>
+	      <th scope="col text-center">Acciones</th>
+	    </tr>
+	  </thead>
+	  <tbody id="findall">
+	   
+	   
+	  </tbody>
+	</table>
+</div>
+
+<!-- Inicio Modal cliente nuevo -->
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Ingresar Datos Cliente</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+		  <input type="text" class="form-control mb-3" placeholder="Tipo Documento"  id="txtTipo">
+		  <input type="text" class="form-control mb-3" placeholder="Documento"  id="txtDocumento">      	
+		  <input type="text" class="form-control mb-3" placeholder="Nombre"  id="txtNombre">
+		  <input type="text" class="form-control mb-3" placeholder="Apellido"  id="txtApellido">
+		  <input type="text" class="form-control mb-3" placeholder="Email" id="txtEmail" >    
+		  <input type="date" class="form-control mb-3" placeholder="Fecha Nacimiento" id="txtFechaNac" >    
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" onclick="saveClient();">Ingresar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- fin modal cliente nuevo -->
+
+<!-- Inicio modal actualizar cliente -->
+
+<div class="modal fade" id="staticBackdrop1" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Actualizar Datos Cliente</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+		  <input type="text" class="form-control mb-3" placeholder="Tipo Documento"  id="txtTipoA" disabled>
+		  <input type="text" class="form-control mb-3" placeholder="Documento"  id="txtDocumentoA" disabled>  
+		  <input type="text" class="form-control mb-3" placeholder="Nombre"  id="txtNombreA">
+		  <input type="text" class="form-control mb-3" placeholder="Apellido"  id="txtApellidoA">
+		  <input type="text" class="form-control mb-3" placeholder="Email" id="txtEmailA" >    
+		  <input type="text" class="form-control mb-3" placeholder="Fecha Nacimiento" id="txtFechaNacA" >     
+		  <input type="hidden" class="form-control mb-3" id="txtId" >       
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" onclick="updateClient();">Actualizar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- fin modal actualizar cliente -->
+	
+
+</body>
+</html>
