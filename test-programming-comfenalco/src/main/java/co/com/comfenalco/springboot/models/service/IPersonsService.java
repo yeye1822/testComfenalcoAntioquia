@@ -13,6 +13,10 @@ public interface IPersonsService {
 	
 	public void delete(Long id);
 	
-//	public PersonsEntity findByDocument(String documentNumber);
+	public PersonsEntity findByDocument(String documentNumber);
+	
+	public List<String> findTypeDocument();
+	
+	public PersonsEntity personAssign();
 
 }

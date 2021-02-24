@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import co.com.comfenalco.springboot.models.entity.MenssageEntity;
 import co.com.comfenalco.springboot.models.entity.PersonsEntity;
 import co.com.comfenalco.springboot.models.service.IPersonsService;
 
@@ -50,20 +51,33 @@ public class PersonsControllers {
 		personCurrent.setDocumentNumber(person.getDocumentNumber());
 		personCurrent.setName(person.getName());
 		personCurrent.setLastName(person.getLastName());
-		personCurrent.setEmail(person.getEmail());
 		personCurrent.setBirthDate(person.getBirthDate());
 		
 		return personsService.save(personCurrent);
 	}
 	
 	@DeleteMapping("/persons/{id}")
-	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void deletePerson(@PathVariable long id) {
+	public MenssageEntity deletePerson(@PathVariable long id) {
+		MenssageEntity message = new MenssageEntity();
+		message.setCodError("00");
+		message.setMessage("Registro Eliminado con Exito!");
 		personsService.delete(id);
+		
+		return message;
 	}
 	
-//	@GetMapping("/personByDocument/{documentNumber}")
-//	public PersonsEntity showPersonByDocument(@PathVariable String documentNumber) {
-//		return personsService.findByDocument(documentNumber);
-//	}
+	@GetMapping("/personByDocument/{documentNumber}")
+	public PersonsEntity showPersonByDocument(@PathVariable String documentNumber) {
+		return personsService.findByDocument(documentNumber);
+	}
+	
+	@GetMapping("/typeDocument")
+	public List<String> typeDocumet(){
+		return personsService.findTypeDocument();
+	}
+	
+	@GetMapping("/showPerson")
+	public PersonsEntity personAssign() {
+		return personsService.personAssign();
+	}
 }

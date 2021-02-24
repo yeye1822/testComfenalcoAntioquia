@@ -40,10 +40,21 @@ public class PersonsImpl implements IPersonsService{
 		personsDao.deleteById(id);
 	}
 	
-//	@Override
-//	@Transactional(readOnly = true)
-//	public PersonsEntity findByDocument(String documentNumber) {
-//		return personsDao.findByDocument(documentNumber);
-//	}
+	@Override
+	@Transactional(readOnly = true)
+	public PersonsEntity findByDocument(String documentNumber) {
+		return personsDao.findByDocument(documentNumber);
+	}
 
+	@Override
+	@Transactional(readOnly = true)
+	public List<String> findTypeDocument(){
+		return personsDao.findTypeDocument();
+	}
+	
+	@Override
+	@Transactional(readOnly = true)
+	public PersonsEntity personAssign() {
+		return personsDao.personAssign();
+	}
 }

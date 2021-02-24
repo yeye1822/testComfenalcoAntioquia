@@ -31,7 +31,6 @@ public class PersonsEntity implements Serializable{
 	private String documentNumber;
 	private String name;
 	private String lastName;
-	private String email;
 	private Date birthDate;
 	
 	@PrePersist
@@ -67,12 +66,6 @@ public class PersonsEntity implements Serializable{
 	}
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
 	}
 	public Date getBirthDate() {
 		return birthDate;

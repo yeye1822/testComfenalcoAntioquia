@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Consumir Servicio SprintBoot</title>
+	<title>Service SprintBoot</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
 	<link rel="stylesheet" href="fontAwesome/css/font-awesome.min.css">
@@ -12,16 +12,16 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-	<script type="text/javascript" src="js/consumeServiceCliente.js"></script>
+	<script type="text/javascript" src="js/personsService.js"></script>
 </head>
 <body onload="findAll();">
 
 <div class="container">
-	<h1 class="mt-5 mb-5">Lista de Clientes</h1>
+	<h1 class="mt-5 mb-5">Lista de Personas</h1>
 
 	<div class="text-right">
-		<button type="button" class="btn btn-outline-primary mb-4 text-right" data-toggle="modal" data-target="#staticBackdrop">Agregar Cliente</button>
-		<button type="button" class="btn btn-outline-primary mb-4 text-right" onclick="enviarPremiacion();">Ir a Premiación</button>
+		<button type="button" class="btn btn-outline-primary mb-4 text-right" data-toggle="modal" data-target="#staticBackdrop">Nueva Persona</button>
+		<button type="button" class="btn btn-outline-primary mb-4 text-right" onclick="sendPrize();">Premiación</button>
 	</div>
 	
 	<table class="table">
@@ -32,16 +32,11 @@
 		  <th scope="col">Documento</th>
 	      <th scope="col">Nombre</th>
 	      <th scope="col">Apellido</th>
-	      <th scope="col">Email</th>
 		  <th scope="col">Fecha Nacimiento</th>
-		  <th scope="col">Fecha Creación</th>
-	      <th scope="col text-center">Acciones</th>
+	      <th scope="col text-center">Operación</th>
 	    </tr>
 	  </thead>
-	  <tbody id="findall">
-	   
-	   
-	  </tbody>
+	  <tbody id="findAll"></tbody>
 	</table>
 </div>
 
@@ -52,22 +47,21 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Ingresar Datos Cliente</h5>
+        <h5 class="modal-title" id="staticBackdropLabel">Nueva Persona</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-		  <input type="text" class="form-control mb-3" placeholder="Tipo Documento"  id="txtTipo">
-		  <input type="text" class="form-control mb-3" placeholder="Documento"  id="txtDocumento">      	
+		  <select class="form-control mb-3" id="typeDocument" placeholder="Tipo Documento" ></select>
+		  <input type="number" class="form-control mb-3" onchange="checkDocumentNumber()" placeholder="Documento"  id="txtDocumento">      	
 		  <input type="text" class="form-control mb-3" placeholder="Nombre"  id="txtNombre">
-		  <input type="text" class="form-control mb-3" placeholder="Apellido"  id="txtApellido">
-		  <input type="text" class="form-control mb-3" placeholder="Email" id="txtEmail" >    
+		  <input type="text" class="form-control mb-3" placeholder="Apellido"  id="txtApellido">   
 		  <input type="date" class="form-control mb-3" placeholder="Fecha Nacimiento" id="txtFechaNac" >    
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary" onclick="saveClient();">Ingresar</button>
+        <button type="button" class="btn btn-primary" onclick="checkDocumentNumber();">Ingresar</button>
       </div>
     </div>
   </div>
@@ -81,7 +75,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Actualizar Datos Cliente</h5>
+        <h5 class="modal-title" id="staticBackdropLabel">Actualizar Información</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -90,8 +84,7 @@
 		  <input type="text" class="form-control mb-3" placeholder="Tipo Documento"  id="txtTipoA" disabled>
 		  <input type="text" class="form-control mb-3" placeholder="Documento"  id="txtDocumentoA" disabled>  
 		  <input type="text" class="form-control mb-3" placeholder="Nombre"  id="txtNombreA">
-		  <input type="text" class="form-control mb-3" placeholder="Apellido"  id="txtApellidoA">
-		  <input type="text" class="form-control mb-3" placeholder="Email" id="txtEmailA" >    
+		  <input type="text" class="form-control mb-3" placeholder="Apellido"  id="txtApellidoA">   
 		  <input type="text" class="form-control mb-3" placeholder="Fecha Nacimiento" id="txtFechaNacA" >     
 		  <input type="hidden" class="form-control mb-3" id="txtId" >       
       </div>
